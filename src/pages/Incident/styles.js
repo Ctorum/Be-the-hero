@@ -74,17 +74,12 @@ export const Container = styled.div`
         color: white;
     }
 
-    .lastInputs {
-        display: flex;
-        max-width: 25vw;
-    }
-
-    .firstInput {
-        width: 16vw;
-    }
-
-    .secondInput {
-        width: 2vw;
-        margin-left: 0.3vw;
+    textarea {
+        border: none;
+        border-radius: 5px;
+        padding: 0.8rem;
+        width: 20vw;
+        margin-bottom: 0.4rem;
+        font-family: 'Roboto', sans-serif;
     }
 `;

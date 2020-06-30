@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Container } from './styles';
+import api from '../../services/api';
 import logo from '../../assets/logo.png';
 
 function Register() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [whatsapp, setWhatsapp] = useState('');
+    const [city, setCity] = useState('');
+    const [uf, setUf] = useState('');
+
+    async function handleCreate() {
+        const data = {
+            name,
+            email,
+            whatsapp,
+            city,
+            uf,
+        };
+
+        const response = await api.post('/ongs', data);
+
+        console.log(response);
+        console.log(data);
+    }
+
     return (
         <Container>
             <div className="background">
@@ -25,22 +47,50 @@ function Register() {
                         </div>
                     </div>
                     <div className="rightDiv">
-                        <input type="text" placeholder="Nome da ONG" />
-                        <input type="email" placeholder="E-mail" />
-                        <input type="tel" placeholder="Whatsapp" />
+                        <input
+                            type="text"
+                            placeholder="Nome da ONG"
+                            className="name"
+                            value={name}
+                            onChange={(v) => setName(v.target.value)}
+                        />
+                        <input
+                            type="email"
+                            placeholder="E-mail"
+                            className="email"
+                            value={email}
+                            onChange={(v) => setEmail(v.target.value)}
+                        />
+                        <input
+                            type="tel"
+                            placeholder="Whatsapp"
+                            className="whatsapp"
+                            value={whatsapp}
+                            onChange={(v) => setWhatsapp(v.target.value)}
+                        />
                         <div className="lastInputs">
                             <input
                                 type="text"
                                 placeholder="Cidade"
-                                className="firstInput"
+                                className="firstInput city"
+                                value={city}
+                                onChange={(v) => setCity(v.target.value)}
                             />
                             <input
                                 type="text"
                                 placeholder="UF"
-                                className="secondInput"
+                                className="secondInput uf"
+                                value={uf}
+                                onChange={(v) => setUf(v.target.value)}
                             />
                         </div>
-                        <button type="submit">Cadastrar</button>
+                        <button
+                            type="submit"
+                            className="button"
+                            onClick={handleCreate}
+                        >
+                            Cadastrar
+                        </button>
                     </div>
                 </div>
             </div>

@@ -12,8 +12,8 @@ function Register() {
                         <img src={logo} alt="logo" className="logo" />
                         <h2>Cadastro</h2>
                         <p>
-                            Faça seu cadastro, entre na plataforma e ajude
-                            pessoas a encontrar os casos da sua ONG.
+                            Descreva o caso detalhadamente para encontrar um
+                            herói para resolver isso
                         </p>
                         <div className="noSignin">
                             <div className="arrow">
@@ -21,25 +21,13 @@ function Register() {
                                 <div className="secondLine" />
                                 <div className="thirdLine" />
                             </div>
-                            <p>Não tenho cadastro</p>
+                            <p>Voltar para home</p>
                         </div>
                     </div>
                     <div className="rightDiv">
-                        <input type="text" placeholder="Nome da ONG" />
-                        <input type="email" placeholder="E-mail" />
-                        <input type="tel" placeholder="Whatsapp" />
-                        <div className="lastInputs">
-                            <input
-                                type="text"
-                                placeholder="Cidade"
-                                className="firstInput"
-                            />
-                            <input
-                                type="text"
-                                placeholder="UF"
-                                className="secondInput"
-                            />
-                        </div>
+                        <input type="text" placeholder="Título do caso" />
+                        <textarea placeholder="Descrição" rows="7" cols="33" />
+                        <input type="tel" placeholder="Valor em reais" />
                         <button type="submit">Cadastrar</button>
                     </div>
                 </div>
