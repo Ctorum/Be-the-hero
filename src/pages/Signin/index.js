@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Container } from './styles';
 import api from '../../services/api';
@@ -7,17 +8,22 @@ import heroes from '../../assets/heroes.png';
 import icon from '../../assets/icon.svg';
 
 function Signin() {
+    const history = useHistory();
+
     const [id, setId] = useState('');
 
-    async function handleCreate() {
+    async function handleLogin() {
         const data = {
             id,
         };
 
-        const response = await api.post('/sessions', data);
-        console.log(data);
-        console.log(response);
+        await api.post('/sessions', data);
+
+        setId('');
+        history.push('/profile');
+        localStorage.setItem('UserId', id);
     }
+
     return (
         <Container>
             <div className="login">
@@ -30,7 +36,7 @@ function Signin() {
                     value={id}
                     onChange={(v) => setId(v.target.value)}
                 />
-                <a className="link1" href="# " onClick={handleCreate}>
+                <a className="link1" href="# " onClick={handleLogin}>
                     Entrar
                 </a>
                 <div className="iconBtn">

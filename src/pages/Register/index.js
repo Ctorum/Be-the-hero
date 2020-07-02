@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Container } from './styles';
 import api from '../../services/api';
 import logo from '../../assets/logo.png';
 
 function Register() {
+    const history = useHistory();
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
@@ -21,9 +24,15 @@ function Register() {
         };
 
         const response = await api.post('/ongs', data);
+        alert(`Seu ID de acesso é: ${response.data.id}`);
 
-        console.log(response);
-        console.log(data);
+        setName('');
+        setEmail('');
+        setWhatsapp('');
+        setCity('');
+        setUf('');
+
+        history.push('/');
     }
 
     return (

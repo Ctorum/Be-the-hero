@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Container } from './styles';
+import api from '../../services/api';
 import logo from '../../assets/logo.png';
 
 function Register() {
+    const history = useHistory();
+    const UserId = localStorage.getItem('UserId');
+
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [value, setValue] = useState('');
+
+    async function handleCreate() {
+        const data = {
+            title,
+            description,
+            value,
+        };
+
+        await api.post('/incidents', data, {
+            headers: { Authorization: UserId },
+        });
+        alert('Caso cadastrado com sucesso');
+
+        history.push('/profile');
+    }
+
     return (
         <Container>
             <div className="background">
@@ -25,10 +49,25 @@ function Register() {
                         </div>
                     </div>
                     <div className="rightDiv">
-                        <input type="text" placeholder="Título do caso" />
-                        <textarea placeholder="Descrição" rows="7" cols="33" />
-                        <input type="tel" placeholder="Valor em reais" />
-                        <button type="submit">Cadastrar</button>
+                        <input
+                            type="text"
+                            placeholder="Título do caso"
+                            onChange={(v) => setTitle(v.target.value)}
+                        />
+                        <textarea
+                            placeholder="Descrição"
+                            rows="7"
+                            cols="33"
+                            onChange={(v) => setDescription(v.target.value)}
+                        />
+                        <input
+                            type="tel"
+                            placeholder="Valor em reais"
+                            onChange={(v) => setValue(v.target.value)}
+                        />
+                        <button type="submit" onClick={handleCreate}>
+                            Cadastrar
+                        </button>
                     </div>
                 </div>
             </div>

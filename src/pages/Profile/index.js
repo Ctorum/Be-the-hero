@@ -1,10 +1,13 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Container } from './styles';
 import logo from '../../assets/logo.png';
 import off from '../../assets/off.svg';
 
 function Profile() {
+    const history = useHistory();
+
     return (
         <Container>
             <div className="background">
@@ -14,7 +17,11 @@ function Profile() {
                         <p>Bem vinda,</p>
                     </div>
                     <div className="rightPart">
-                        <button type="button" className="regButton">
+                        <button
+                            type="button"
+                            className="regButton"
+                            onClick={() => history.push('/incident')}
+                        >
                             Cadastrar novo caso
                         </button>
                         <button type="button" className="imgButton">
@@ -25,6 +32,7 @@ function Profile() {
                 <div className="content">
                     <div className="leftDiv">
                         <h2>Casos cadastrados</h2>
+                        <div className="elementsList" />
                     </div>
                     <div className="rightDiv" />
                 </div>

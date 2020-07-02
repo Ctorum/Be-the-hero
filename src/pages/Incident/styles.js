@@ -81,5 +81,6 @@ export const Container = styled.div`
         width: 20vw;
         margin-bottom: 0.4rem;
         font-family: 'Roboto', sans-serif;
+        resize: none;
     }
 `;
